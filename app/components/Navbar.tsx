@@ -80,7 +80,13 @@ const Navbar = () => {
       <div className="max-w-6xl mx-auto px-4 flex items-center justify-between border-x border-blue-200 bg-white/70 backdrop-blur-md">
         {/* Logo */}
         <div className="logo cursor-pointer py-4">
-          <Image src="/logo.avif" alt="logo" width={150} height={50} style={{ height: "auto" }} />
+          <Image
+            src="/logo.avif"
+            alt="logo"
+            width={150}
+            height={50}
+            style={{ height: "auto" }}
+          />
         </div>
 
         {/* Navigation */}

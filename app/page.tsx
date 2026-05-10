@@ -7,7 +7,7 @@ import Problem from "./components/Problem";
 const page = () => {
   return (
     // Added 'relative' and 'overflow-hidden' to keep the blur contained within the page bounds
-    <div className="relative bg-gradient-to-b from-zinc-50 to-[#faf9f5] min-h-screen overflow-hidden">
+    <div className="relative bg-gradient-to-b from-zinc-50 to-[#faf9f5] min-h-screen overflow-hidden pb-1">
       <Navbar />
       <Hero />
       <LogoGrid />
