@@ -3,6 +3,11 @@ import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import LogoGrid from "./components/LogoGrid";
 import Problem from "./components/Problem";
+import CorePlatform from "./components/CorePlatform";
+import Industries from "./components/Industries";
+import ArtificialSection from "./components/ArtificialSection";
+import UseCase from "./components/UseCase";
+import Benifits from "./components/Benifits";
 
 const page = () => {
   return (
@@ -12,7 +17,11 @@ const page = () => {
       <Hero />
       <LogoGrid />
       <Problem />
-
+      <CorePlatform />
+      <ArtificialSection />
+      <UseCase />
+      <Industries />
+      <Benifits />
       {/* --- Bottom Faded Blur Effects --- */}
 
       {/* 1. Ambient Glowing Blur (Increased size, blur radius, and opacity)
