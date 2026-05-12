@@ -202,15 +202,119 @@ const Navbar = () => {
           <NavItem title="Pricing" hasDropdown={false} />
         </div>
 
-        {/* Buttons */}
+        {/* --- Cyber-Brutalist Nav Buttons --- */}
         <div className="font-inter flex items-center gap-3 py-4">
-          <button className="px-4 py-2 text-sm font-medium text-zinc-700 border border-zinc-300 bg-white transition-all duration-200 hover:bg-zinc-50 active:scale-[0.98]">
-            Sign in
-          </button>
+          {/* Secondary Button: Sign In */}
+          <motion.div
+            initial="rest"
+            whileHover="hover"
+            className="relative p-[3px] group cursor-pointer"
+          >
+            {/* Clamping Brackets (Lighter for secondary) */}
+            <motion.div
+              variants={{ rest: { x: 0, y: 0 }, hover: { x: 1.5, y: 1.5 } }}
+              className="absolute top-0 left-0 size-2 border-t-[1.5px] border-l-[1.5px] border-zinc-300 group-hover:border-zinc-700 transition-colors pointer-events-none"
+            ></motion.div>
+            <motion.div
+              variants={{ rest: { x: 0, y: 0 }, hover: { x: -1.5, y: 1.5 } }}
+              className="absolute top-0 right-0 size-2 border-t-[1.5px] border-r-[1.5px] border-zinc-300 group-hover:border-zinc-700 transition-colors pointer-events-none"
+            ></motion.div>
+            <motion.div
+              variants={{ rest: { x: 0, y: 0 }, hover: { x: 1.5, y: -1.5 } }}
+              className="absolute bottom-0 left-0 size-2 border-b-[1.5px] border-l-[1.5px] border-zinc-300 group-hover:border-zinc-700 transition-colors pointer-events-none"
+            ></motion.div>
+            <motion.div
+              variants={{ rest: { x: 0, y: 0 }, hover: { x: -1.5, y: -1.5 } }}
+              className="absolute bottom-0 right-0 size-2 border-b-[1.5px] border-r-[1.5px] border-zinc-300 group-hover:border-zinc-700 transition-colors pointer-events-none"
+            ></motion.div>
 
-          <button className="px-5 py-2 text-sm font-medium text-white bg-blue-600 shadow-sm transition-all duration-200 hover:bg-blue-700 hover:shadow-md active:scale-[0.98]">
-            Start Free Trial
-          </button>
+            <button className="py-1.5 px-4 rounded-none text-sm font-mono tracking-tight transition-colors flex items-center justify-center overflow-hidden border border-zinc-200 bg-white text-zinc-700 hover:bg-zinc-50">
+              <div
+                className="relative h-5 flex items-center justify-center"
+                style={{ perspective: "1000px" }}
+              >
+                <motion.span
+                  variants={{
+                    rest: { y: 0, rotateX: 0, opacity: 1 },
+                    hover: { y: -20, rotateX: 90, opacity: 0 },
+                  }}
+                  transition={{ type: "spring", stiffness: 400, damping: 25 }}
+                  className="absolute inset-0 flex items-center justify-center whitespace-nowrap"
+                >
+                  Sign in
+                </motion.span>
+                <motion.span
+                  variants={{
+                    rest: { y: 20, rotateX: -90, opacity: 0 },
+                    hover: { y: 0, rotateX: 0, opacity: 1 },
+                  }}
+                  transition={{ type: "spring", stiffness: 400, damping: 25 }}
+                  className="absolute inset-0 flex items-center justify-center whitespace-nowrap"
+                  aria-hidden="true"
+                >
+                  Sign in
+                </motion.span>
+                <span className="invisible whitespace-nowrap">Sign in</span>
+              </div>
+            </button>
+          </motion.div>
+
+          {/* Primary Button: Start Free Trial */}
+          <motion.div
+            initial="rest"
+            whileHover="hover"
+            className="relative p-[3px] group cursor-pointer hidden sm:block"
+          >
+            {/* Clamping Brackets (Blue transition for primary) */}
+            <motion.div
+              variants={{ rest: { x: 0, y: 0 }, hover: { x: 1.5, y: 1.5 } }}
+              className="absolute top-0 left-0 size-2 border-t-[1.5px] border-l-[1.5px] border-zinc-400 group-hover:border-blue-400 transition-colors pointer-events-none"
+            ></motion.div>
+            <motion.div
+              variants={{ rest: { x: 0, y: 0 }, hover: { x: -1.5, y: 1.5 } }}
+              className="absolute top-0 right-0 size-2 border-t-[1.5px] border-r-[1.5px] border-zinc-400 group-hover:border-blue-400 transition-colors pointer-events-none"
+            ></motion.div>
+            <motion.div
+              variants={{ rest: { x: 0, y: 0 }, hover: { x: 1.5, y: -1.5 } }}
+              className="absolute bottom-0 left-0 size-2 border-b-[1.5px] border-l-[1.5px] border-zinc-400 group-hover:border-blue-400 transition-colors pointer-events-none"
+            ></motion.div>
+            <motion.div
+              variants={{ rest: { x: 0, y: 0 }, hover: { x: -1.5, y: -1.5 } }}
+              className="absolute bottom-0 right-0 size-2 border-b-[1.5px] border-r-[1.5px] border-zinc-400 group-hover:border-blue-400 transition-colors pointer-events-none"
+            ></motion.div>
+
+            <button className="py-1.5 px-5 rounded-none text-sm font-mono tracking-tight transition-colors flex items-center justify-center overflow-hidden bg-blue-600 text-white hover:bg-blue-700">
+              <div
+                className="relative h-5 flex items-center justify-center"
+                style={{ perspective: "1000px" }}
+              >
+                <motion.span
+                  variants={{
+                    rest: { y: 0, rotateX: 0, opacity: 1 },
+                    hover: { y: -20, rotateX: 90, opacity: 0 },
+                  }}
+                  transition={{ type: "spring", stiffness: 400, damping: 25 }}
+                  className="absolute inset-0 flex items-center justify-center whitespace-nowrap"
+                >
+                  Start Free Trial
+                </motion.span>
+                <motion.span
+                  variants={{
+                    rest: { y: 20, rotateX: -90, opacity: 0 },
+                    hover: { y: 0, rotateX: 0, opacity: 1 },
+                  }}
+                  transition={{ type: "spring", stiffness: 400, damping: 25 }}
+                  className="absolute inset-0 flex items-center justify-center whitespace-nowrap"
+                  aria-hidden="true"
+                >
+                  Start Free Trial
+                </motion.span>
+                <span className="invisible whitespace-nowrap">
+                  Start Free Trial
+                </span>
+              </div>
+            </button>
+          </motion.div>
         </div>
       </div>
     </div>

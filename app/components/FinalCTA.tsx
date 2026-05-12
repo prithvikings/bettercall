@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { motion } from "framer-motion";
-import { Check, ArrowRight } from "lucide-react";
+import { Check } from "lucide-react";
 
 const FinalCTA = () => {
   const trustItems = [
@@ -33,13 +33,13 @@ const FinalCTA = () => {
   };
 
   return (
-    <section className="relative w-full border-t border-zinc-200 bg-white overflow-hidden py-24 md:py-32 font-inter">
+    <section className="relative w-full bg-white overflow-hidden font-inter border-b border-blue-200">
       {/* --- Subtle Background Operational Visuals --- */}
       {/* Soft radial glow to center attention */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(59,130,246,0.03)_0%,transparent_70%)] pointer-events-none"></div>
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(59,130,246,0.03)_0%,transparent_70%)] pointer-events-none z-0"></div>
 
       {/* Abstract Communication Nodes (Low Opacity) */}
-      <div className="absolute inset-0 w-full h-full pointer-events-none flex justify-center items-center opacity-[0.03] text-blue-900">
+      <div className="absolute inset-0 w-full h-full pointer-events-none flex justify-center items-center opacity-[0.03] text-blue-900 z-0">
         <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
           <defs>
             <pattern
@@ -62,27 +62,39 @@ const FinalCTA = () => {
         </svg>
       </div>
 
-      {/* --- Main Content Container --- */}
-      <div className="relative max-w-4xl mx-auto px-6 z-10 flex flex-col items-center text-center">
+      {/* --- Main Content Container (Aligned with Design System Grid) --- */}
+      <div className="relative max-w-6xl mx-auto px-6 py-24 border-x border-blue-200 z-10 flex flex-col items-center text-center">
+        {/* Standard Design System Corner Accents */}
+        <div className="absolute -top-[2px] -left-[2px] w-4 h-4 border-t-[3px] border-l-[3px] border-blue-500 z-20"></div>
+        <div className="absolute -top-[2px] -right-[2px] w-4 h-4 border-t-[3px] border-r-[3px] border-blue-500 z-20"></div>
+        <div className="absolute -bottom-[2px] -left-[2px] w-4 h-4 border-b-[3px] border-l-[3px] border-blue-500 z-20"></div>
+        <div className="absolute -bottom-[2px] -right-[2px] w-4 h-4 border-b-[3px] border-r-[3px] border-blue-500 z-20"></div>
+
         <motion.div
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
-          className="flex flex-col items-center w-full"
+          className="flex flex-col items-center w-full max-w-4xl"
         >
           {/* Label */}
-          <motion.span
+          <motion.div
             variants={itemVariants}
-            className="text-[11px] font-bold tracking-[0.2em] text-blue-600 uppercase mb-6"
+            className="inline-flex items-center justify-center gap-2 px-3 py-1.5 mb-8 text-xs font-medium border border-blue-200 bg-blue-50 text-blue-700 shadow-sm"
           >
-            Ready to Scale
-          </motion.span>
+            <div className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full bg-blue-400 opacity-75"></span>
+              <span className="relative inline-flex h-2 w-2 bg-blue-600"></span>
+            </div>
+            <span className="font-poppins uppercase tracking-wider">
+              Ready to Scale
+            </span>
+          </motion.div>
 
           {/* Headline */}
           <motion.h2
             variants={itemVariants}
-            className="text-4xl md:text-5xl lg:text-6xl font-bold text-zinc-900 tracking-tight leading-[1.1] mb-6 max-w-3xl"
+            className="text-3xl md:text-4xl font-normal tracking-tight mb-4 font-poppins text-zinc-900 max-w-xl"
           >
             Build a business that never misses a customer.
           </motion.h2>
@@ -90,43 +102,157 @@ const FinalCTA = () => {
           {/* Supporting Text */}
           <motion.p
             variants={itemVariants}
-            className="text-lg md:text-xl text-zinc-500 font-medium leading-relaxed mb-10 max-w-2xl"
+            className="text-sm text-center font-poppins mb-6 text-zinc-500 tracking-tight max-w-lg leading-relaxed mt-1"
           >
-            From shared business numbers to AI-powered workflows, Superfone
-            helps modern teams communicate, collaborate, and grow from one
-            platform.
+            Superfone helps modern teams communicate, collaborate, and grow with
+            shared business numbers and AI-powered workflows.
           </motion.p>
 
-          {/* CTA Buttons */}
+          {/* Cyber-Brutalist CTA Buttons */}
           <motion.div
             variants={itemVariants}
-            className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto mb-14"
+            className="flex flex-col sm:flex-row items-center justify-center gap-6 w-full sm:w-auto mb-14"
           >
             {/* Primary CTA */}
-            <button className="w-full sm:w-auto group relative flex items-center justify-center gap-2 px-8 py-3.5 bg-blue-600 text-white rounded-lg text-sm font-bold shadow-sm transition-all duration-200 hover:bg-blue-700 hover:shadow-md active:scale-[0.98]">
-              Start Free Trial
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-            </button>
+            <motion.div
+              initial="rest"
+              whileHover="hover"
+              className="relative p-[3px] group cursor-pointer w-full sm:w-auto"
+            >
+              {/* Clamping Brackets */}
+              <motion.div
+                variants={{ rest: { x: 0, y: 0 }, hover: { x: 2, y: 2 } }}
+                className="absolute top-0 left-0 size-2.5 border-t-[2px] border-l-[2px] border-zinc-400 group-hover:border-blue-400 transition-colors pointer-events-none"
+              ></motion.div>
+              <motion.div
+                variants={{ rest: { x: 0, y: 0 }, hover: { x: -2, y: 2 } }}
+                className="absolute top-0 right-0 size-2.5 border-t-[2px] border-r-[2px] border-zinc-400 group-hover:border-blue-400 transition-colors pointer-events-none"
+              ></motion.div>
+              <motion.div
+                variants={{ rest: { x: 0, y: 0 }, hover: { x: 2, y: -2 } }}
+                className="absolute bottom-0 left-0 size-2.5 border-b-[2px] border-l-[2px] border-zinc-400 group-hover:border-blue-400 transition-colors pointer-events-none"
+              ></motion.div>
+              <motion.div
+                variants={{ rest: { x: 0, y: 0 }, hover: { x: -2, y: -2 } }}
+                className="absolute bottom-0 right-0 size-2.5 border-b-[2px] border-r-[2px] border-zinc-400 group-hover:border-blue-400 transition-colors pointer-events-none"
+              ></motion.div>
+
+              <button className="py-2 px-4 rounded-none text-sm font-mono tracking-tight transition-colors flex items-center justify-center gap-2 overflow-hidden bg-blue-600 text-white hover:bg-blue-700 w-full sm:w-auto">
+                <div
+                  className="relative h-5 flex items-center justify-center"
+                  style={{ perspective: "1000px" }}
+                >
+                  <motion.span
+                    variants={{
+                      rest: { y: 0, rotateX: 0, opacity: 1 },
+                      hover: { y: -20, rotateX: 90, opacity: 0 },
+                    }}
+                    transition={{ type: "spring", stiffness: 400, damping: 25 }}
+                    className="absolute inset-0 flex items-center justify-center whitespace-nowrap"
+                  >
+                    Start Free Trial
+                  </motion.span>
+                  <motion.span
+                    variants={{
+                      rest: { y: 20, rotateX: -90, opacity: 0 },
+                      hover: { y: 0, rotateX: 0, opacity: 1 },
+                    }}
+                    transition={{ type: "spring", stiffness: 400, damping: 25 }}
+                    className="absolute inset-0 flex items-center justify-center whitespace-nowrap"
+                    aria-hidden="true"
+                  >
+                    Start Free Trial
+                  </motion.span>
+                  <span className="invisible whitespace-nowrap">
+                    Start Free Trial
+                  </span>
+                </div>
+
+                <svg
+                  className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1 shrink-0"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M5 12h14M12 5l7 7-7 7"
+                  ></path>
+                </svg>
+              </button>
+            </motion.div>
 
             {/* Secondary CTA */}
-            <button className="w-full sm:w-auto px-8 py-3.5 bg-white border border-zinc-200 text-zinc-900 rounded-lg text-sm font-bold shadow-sm transition-all duration-200 hover:bg-zinc-50 active:scale-[0.98]">
-              Book a Demo
-            </button>
+            <motion.div
+              initial="rest"
+              whileHover="hover"
+              className="relative p-[3px] group cursor-pointer w-full sm:w-auto"
+            >
+              {/* Clamping Brackets */}
+              <motion.div
+                variants={{ rest: { x: 0, y: 0 }, hover: { x: 2, y: 2 } }}
+                className="absolute top-0 left-0 size-2.5 border-t-[2px] border-l-[2px] border-zinc-300 group-hover:border-zinc-700 transition-colors pointer-events-none"
+              ></motion.div>
+              <motion.div
+                variants={{ rest: { x: 0, y: 0 }, hover: { x: -2, y: 2 } }}
+                className="absolute top-0 right-0 size-2.5 border-t-[2px] border-r-[2px] border-zinc-300 group-hover:border-zinc-700 transition-colors pointer-events-none"
+              ></motion.div>
+              <motion.div
+                variants={{ rest: { x: 0, y: 0 }, hover: { x: 2, y: -2 } }}
+                className="absolute bottom-0 left-0 size-2.5 border-b-[2px] border-l-[2px] border-zinc-300 group-hover:border-zinc-700 transition-colors pointer-events-none"
+              ></motion.div>
+              <motion.div
+                variants={{ rest: { x: 0, y: 0 }, hover: { x: -2, y: -2 } }}
+                className="absolute bottom-0 right-0 size-2.5 border-b-[2px] border-r-[2px] border-zinc-300 group-hover:border-zinc-700 transition-colors pointer-events-none"
+              ></motion.div>
+
+              <button className="py-2 px-4 rounded-none text-sm font-mono tracking-tight transition-colors flex items-center justify-center overflow-hidden border border-zinc-300 bg-transparent text-zinc-800 hover:bg-zinc-50 hover:border-zinc-400 w-full sm:w-auto">
+                <div
+                  className="relative h-5 flex items-center justify-center"
+                  style={{ perspective: "1000px" }}
+                >
+                  <motion.span
+                    variants={{
+                      rest: { y: 0, rotateX: 0, opacity: 1 },
+                      hover: { y: -20, rotateX: 90, opacity: 0 },
+                    }}
+                    transition={{ type: "spring", stiffness: 400, damping: 25 }}
+                    className="absolute inset-0 flex items-center justify-center whitespace-nowrap"
+                  >
+                    Book a Demo
+                  </motion.span>
+                  <motion.span
+                    variants={{
+                      rest: { y: 20, rotateX: -90, opacity: 0 },
+                      hover: { y: 0, rotateX: 0, opacity: 1 },
+                    }}
+                    transition={{ type: "spring", stiffness: 400, damping: 25 }}
+                    className="absolute inset-0 flex items-center justify-center whitespace-nowrap"
+                    aria-hidden="true"
+                  >
+                    Book a Demo
+                  </motion.span>
+                  <span className="invisible whitespace-nowrap">
+                    Book a Demo
+                  </span>
+                </div>
+              </button>
+            </motion.div>
           </motion.div>
 
           {/* Trust / Reassurance Row */}
           <motion.div
             variants={itemVariants}
-            className="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-x-8 gap-y-4 pt-8 border-t border-zinc-100/50 w-full"
+            className="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-x-8 gap-y-4 pt-8 border-t border-zinc-200/60 w-full"
           >
             {trustItems.map((item, index) => (
               <div
                 key={index}
-                className="flex items-center gap-2 text-sm font-medium text-zinc-500"
+                className="flex items-center gap-2 text-xs font-mono text-zinc-500 uppercase tracking-wide"
               >
-                <div className="flex items-center justify-center w-4 h-4 rounded-full bg-zinc-100 text-zinc-400">
-                  <Check className="w-2.5 h-2.5 stroke-[3]" />
-                </div>
+                <Check className="w-3.5 h-3.5 text-blue-500" />
                 {item}
               </div>
             ))}

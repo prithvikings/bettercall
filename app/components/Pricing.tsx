@@ -1,16 +1,23 @@
 "use client";
 import React, { useState } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
+import {
+  Check,
+  Sparkles,
+  Plus,
+  UsersIcon,
+  LayoutDashboard,
+  SettingsIcon,
+  MessageCircleMore,
+} from "lucide-react";
 
-// --- Icons (Assuming you are using lucide-react, standard with shadcn) ---
-// If you don't have it, run: npm install lucide-react
-import { Check, ArrowRight, Sparkles, Plus } from "lucide-react";
-
+// Updated data structure to include monthly vs yearly pricing
 const pricingTiers = [
   {
     name: "Starter",
     description: "Shared business communication for growing teams.",
-    price: "$19", // Placeholder, adjust as needed
+    monthlyPrice: "24",
+    yearlyPrice: "19",
     positioning: "Replace personal numbers with business communication.",
     buttonText: "Start Free Trial",
     buttonVariant: "secondary",
@@ -27,7 +34,8 @@ const pricingTiers = [
     name: "Growth",
     badge: "Most Popular",
     description: "Organize customer communication across your entire team.",
-    price: "$49",
+    monthlyPrice: "59",
+    yearlyPrice: "49",
     positioning: "Keep every customer conversation organized and actionable.",
     buttonText: "Scale Your Team",
     buttonVariant: "primary",
@@ -45,10 +53,11 @@ const pricingTiers = [
     name: "AI Workforce",
     description:
       "AI employees that answer, qualify, follow up, and operate 24/7.",
-    price: "$99",
+    monthlyPrice: "119",
+    yearlyPrice: "99",
     positioning: "Your AI team replies to customers around the clock.",
     buttonText: "Deploy AI Employees",
-    buttonVariant: "dark",
+    buttonVariant: "secondary",
     features: [
       "Everything in Growth",
       "AI Receptionist",
@@ -62,19 +71,10 @@ const pricingTiers = [
 ];
 
 const addOns = [
-  "WhatsApp API",
-  "Custom automations",
-  "AI voice agents",
-  "CRM integrations",
-  "Additional team members",
-];
-
-const roiMetrics = [
-  "Faster lead response",
-  "Fewer missed calls",
-  "Better team visibility",
-  "Automated follow-ups",
-  "Higher customer response rates",
+  { icon: MessageCircleMore, label: "WhatsApp API" },
+  { icon: SettingsIcon, label: "Custom automations" },
+  { icon: Sparkles, label: "AI voice agents" },
+  { icon: LayoutDashboard, label: "CRM integrations" },
 ];
 
 const Pricing = () => {
@@ -96,35 +96,64 @@ const Pricing = () => {
             Superfone grows with your business.
           </p>
         </div>
+
         <div className="flex items-center justify-center border-x border-blue-200 pb-10">
-          {/* Simple Billing Toggle */}
-          <div className="mt-10 flex items-center bg-zinc-50 border border-zinc-200 rounded-full p-1 shadow-sm">
-            <button
-              onClick={() => setIsAnnual(false)}
-              className={`px-6 py-2 rounded-full text-sm transition-all ${
-                !isAnnual
-                  ? "bg-white text-zinc-900 shadow-sm border border-zinc-200/50"
-                  : "text-zinc-500 hover:text-zinc-900"
-              }`}
-            >
-              Monthly
-            </button>
-            <button
-              onClick={() => setIsAnnual(true)}
-              className={`px-6 py-2 rounded-full text-sm font-medium transition-all flex items-center gap-2 ${
-                isAnnual
-                  ? "bg-white text-zinc-900 shadow-sm border border-zinc-200/50"
-                  : "text-zinc-500 hover:text-zinc-900"
-              }`}
-            >
-              Yearly{" "}
-              <span className="text-[10px] bg-blue-100 text-blue-700 px-2 py-0.5 rounded-full uppercase tracking-wider font-semibold">
-                Save 20%
-              </span>
-            </button>
+          {/* --- Squarish Billing Toggle with Corner Brackets --- */}
+          <div className="relative p-[3px] mt-10 group">
+            {/* Corner Bracket Accents */}
+            <div className="absolute top-0 left-0 size-2 border-t-[2px] border-l-[2px] border-zinc-400 transition-colors pointer-events-none"></div>
+            <div className="absolute top-0 right-0 size-2 border-t-[2px] border-r-[2px] border-zinc-400 transition-colors pointer-events-none"></div>
+            <div className="absolute bottom-0 left-0 size-2 border-b-[2px] border-l-[2px] border-zinc-400 transition-colors pointer-events-none"></div>
+            <div className="absolute bottom-0 right-0 size-2 border-b-[2px] border-r-[2px] border-zinc-400 transition-colors pointer-events-none"></div>
+
+            <div className="flex items-center bg-zinc-50 border border-zinc-200 p-1">
+              {/* Monthly Button */}
+              <button
+                onClick={() => setIsAnnual(false)}
+                className={`relative px-6 py-2 rounded-none text-sm transition-colors z-10 ${
+                  !isAnnual
+                    ? "text-zinc-900"
+                    : "text-zinc-500 hover:text-zinc-900"
+                }`}
+              >
+                {/* Sliding Background */}
+                {!isAnnual && (
+                  <motion.div
+                    layoutId="billing-bg"
+                    className="absolute inset-0 bg-white border border-zinc-200/50 shadow-sm -z-10"
+                    transition={{ type: "spring", stiffness: 500, damping: 30 }}
+                  />
+                )}
+                Monthly
+              </button>
+
+              {/* Yearly Button */}
+              <button
+                onClick={() => setIsAnnual(true)}
+                className={`relative px-6 py-2 rounded-none text-sm font-medium transition-colors flex items-center gap-2 z-10 ${
+                  isAnnual
+                    ? "text-zinc-900"
+                    : "text-zinc-500 hover:text-zinc-900"
+                }`}
+              >
+                {/* Sliding Background */}
+                {isAnnual && (
+                  <motion.div
+                    layoutId="billing-bg"
+                    className="absolute inset-0 bg-white border border-zinc-200/50 shadow-sm -z-10"
+                    transition={{ type: "spring", stiffness: 500, damping: 30 }}
+                  />
+                )}
+                Yearly{" "}
+                <span className="text-[10px] bg-blue-100 text-blue-700 px-2 py-0.5 rounded-none uppercase tracking-wider font-semibold">
+                  Save 20%
+                </span>
+              </button>
+            </div>
           </div>
         </div>
-        {/* --- Main Pricing Container (Design System Aligned) --- */}
+
+        {/* --- Main Pricing Container --- */}
         <div className="relative border border-zinc-200 bg-white flex flex-col">
           {/* Sharp Blue Corner Accents */}
           <div className="absolute -top-[2px] -left-[2px] w-4 h-4 border-t-[3px] border-l-[3px] border-blue-500 z-20"></div>
@@ -145,7 +174,7 @@ const Pricing = () => {
               >
                 {/* Optional Badge */}
                 {tier.badge && (
-                  <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-blue-500 text-white text-[11px] uppercase tracking-wider px-3 py-1 rounded-full shadow-sm">
+                  <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-blue-500 text-white text-[11px] uppercase tracking-wider px-3 py-1 rounded-none shadow-sm z-10">
                     {tier.badge}
                   </div>
                 )}
@@ -163,11 +192,47 @@ const Pricing = () => {
                   </p>
                 </div>
 
-                {/* Price */}
+                {/* --- FIXED: 3D Drum Roll Price Animation Spacing --- */}
                 <div className="mb-6 border-b border-zinc-100 pb-6">
-                  <div className="flex items-end gap-1">
-                    <span className="text-4xl font-semibold text-zinc-900 tracking-tighter">
-                      {tier.price}
+                  <div className="flex items-end gap-1.5 h-[40px]">
+                    <span className="text-4xl font-semibold text-zinc-900 tracking-tighter leading-none pb-0.5">
+                      $
+                    </span>
+
+                    {/* Dynamic width container with popLayout */}
+                    <div
+                      className="relative flex items-end overflow-hidden h-[40px]"
+                      style={{ perspective: "1000px" }}
+                    >
+                      <AnimatePresence mode="popLayout" initial={false}>
+                        <motion.div
+                          key={isAnnual ? "yearly" : "monthly"}
+                          initial={{
+                            y: isAnnual ? -40 : 40,
+                            rotateX: isAnnual ? -90 : 90,
+                            opacity: 0,
+                          }}
+                          animate={{ y: 0, rotateX: 0, opacity: 1 }}
+                          exit={{
+                            y: isAnnual ? 40 : -40,
+                            rotateX: isAnnual ? 90 : -90,
+                            opacity: 0,
+                          }}
+                          transition={{
+                            type: "spring",
+                            stiffness: 400,
+                            damping: 25,
+                          }}
+                          // Removed absolute inset-0 to let popLayout handle the width naturally
+                          className="text-4xl font-semibold text-zinc-900 tracking-tighter leading-none pb-0.5"
+                        >
+                          {isAnnual ? tier.yearlyPrice : tier.monthlyPrice}
+                        </motion.div>
+                      </AnimatePresence>
+                    </div>
+
+                    <span className="text-sm font-medium text-zinc-500 mb-1 whitespace-nowrap">
+                      / month
                     </span>
                   </div>
                 </div>
@@ -177,22 +242,78 @@ const Pricing = () => {
                   {tier.positioning}
                 </p>
 
-                {/* CTA Button */}
-                <button
-                  className={`w-full py-3 px-4 rounded-lg text-sm transition-all flex items-center justify-center gap-2 group mb-10 ${
-                    tier.buttonVariant === "primary"
-                      ? "bg-blue-600 text-white hover:bg-blue-700 shadow-sm"
-                      : tier.buttonVariant === "dark"
-                        ? "bg-zinc-900 text-white hover:bg-zinc-800 shadow-sm"
-                        : "bg-white text-zinc-900 border border-zinc-200 hover:bg-zinc-50"
-                  }`}
+                {/* Interactive CTA Button */}
+                <motion.div
+                  initial="rest"
+                  whileHover="hover"
+                  className="relative w-full mb-10 p-[3px] cursor-pointer group"
                 >
-                  {tier.buttonText}
-                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                </button>
+                  {/* Clamping Brackets */}
+                  <motion.div
+                    variants={{ rest: { x: 0, y: 0 }, hover: { x: 2, y: 2 } }}
+                    className="absolute top-0 left-0 size-2.5 border-t-[2px] border-l-[2px] border-zinc-400 group-hover:border-zinc-700 transition-colors pointer-events-none"
+                  ></motion.div>
+                  <motion.div
+                    variants={{ rest: { x: 0, y: 0 }, hover: { x: -2, y: 2 } }}
+                    className="absolute top-0 right-0 size-2.5 border-t-[2px] border-r-[2px] border-zinc-400 group-hover:border-zinc-700 transition-colors pointer-events-none"
+                  ></motion.div>
+                  <motion.div
+                    variants={{ rest: { x: 0, y: 0 }, hover: { x: 2, y: -2 } }}
+                    className="absolute bottom-0 left-0 size-2.5 border-b-[2px] border-l-[2px] border-zinc-400 group-hover:border-zinc-700 transition-colors pointer-events-none"
+                  ></motion.div>
+                  <motion.div
+                    variants={{ rest: { x: 0, y: 0 }, hover: { x: -2, y: -2 } }}
+                    className="absolute bottom-0 right-0 size-2.5 border-b-[2px] border-r-[2px] border-zinc-400 group-hover:border-zinc-700 transition-colors pointer-events-none"
+                  ></motion.div>
+
+                  <button
+                    className={`w-full py-3 px-4 rounded-none text-sm font-mono tracking-tight transition-colors flex items-center justify-center overflow-hidden ${
+                      tier.buttonVariant === "primary"
+                        ? "bg-blue-600 text-white hover:bg-blue-700"
+                        : "bg-zinc-100 text-zinc-800 hover:bg-zinc-200"
+                    }`}
+                  >
+                    {/* 3D Text Flip Container */}
+                    <div
+                      className="relative w-full h-5 flex items-center justify-center"
+                      style={{ perspective: "1000px" }}
+                    >
+                      <motion.span
+                        variants={{
+                          rest: { y: 0, rotateX: 0, opacity: 1 },
+                          hover: { y: -20, rotateX: 90, opacity: 0 },
+                        }}
+                        transition={{
+                          type: "spring",
+                          stiffness: 400,
+                          damping: 25,
+                        }}
+                        className="absolute inset-0 flex items-center justify-center"
+                      >
+                        {tier.buttonText}
+                      </motion.span>
+
+                      <motion.span
+                        variants={{
+                          rest: { y: 20, rotateX: -90, opacity: 0 },
+                          hover: { y: 0, rotateX: 0, opacity: 1 },
+                        }}
+                        transition={{
+                          type: "spring",
+                          stiffness: 400,
+                          damping: 25,
+                        }}
+                        className="absolute inset-0 flex items-center justify-center"
+                        aria-hidden="true"
+                      >
+                        {tier.buttonText}
+                      </motion.span>
+                    </div>
+                  </button>
+                </motion.div>
 
                 {/* Features List */}
-                <div className="mt-auto">
+                <div className="flex-1">
                   <p className="text-xs font-medium text-zinc-900 uppercase tracking-wider mb-4">
                     Key Capabilities
                   </p>
@@ -203,7 +324,11 @@ const Pricing = () => {
                         className="flex items-start gap-3 text-xs text-zinc-600"
                       >
                         <Check
-                          className={`w-4 h-4 mt-0.5 shrink-0 ${i === 0 && tier.name !== "Starter" ? "text-blue-500" : "text-zinc-400"}`}
+                          className={`w-4 h-4 mt-0.5 shrink-0 ${
+                            i === 0 && tier.name !== "Starter"
+                              ? "text-blue-500"
+                              : "text-zinc-400"
+                          }`}
                         />
                         <span>{feature}</span>
                       </li>
@@ -214,21 +339,25 @@ const Pricing = () => {
             ))}
           </div>
 
-          {/* --- Expandable Add-ons (Integrated cleanly at the bottom of the grid) --- */}
+          {/* --- Expandable Add-ons --- */}
           <div className="border-t border-zinc-200 bg-zinc-50/50 p-6 md:px-10 flex flex-col md:flex-row items-center justify-between gap-4">
             <div className="text-sm text-zinc-800 flex items-center gap-2">
               <Plus className="w-4 h-4 text-zinc-500" />
               Expand your workflow when needed.
             </div>
             <div className="flex flex-wrap items-center justify-center md:justify-end gap-2 md:gap-4">
-              {addOns.map((addon, i) => (
-                <span
-                  key={i}
-                  className="text-xs font-medium text-zinc-500 bg-white border border-zinc-200 px-3 py-1 rounded-full shadow-sm"
-                >
-                  {addon}
-                </span>
-              ))}
+              {addOns.map((addon, i) => {
+                const Icon = addon.icon;
+                return (
+                  <span
+                    key={i}
+                    className="flex items-center gap-1.5 text-xs font-medium text-zinc-600 bg-white border border-zinc-200 px-3 py-1 shadow-sm hover:border-zinc-300 transition-all cursor-default"
+                  >
+                    <Icon className="w-3.5 h-3.5 text-zinc-400" />
+                    {addon.label}
+                  </span>
+                );
+              })}
             </div>
           </div>
         </div>

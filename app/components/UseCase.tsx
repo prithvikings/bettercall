@@ -181,7 +181,7 @@ const UseCase = () => {
             <motion.div
               key={item.id}
               variants={itemVariants}
-              className="flex flex-col text-left p-8 rounded-2xl bg-white/60 border border-zinc-100/50 hover:bg-white hover:shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:border-zinc-200/60 transition-all duration-300 cursor-default"
+              className="flex flex-col text-left p-8 rounded-2xl bg-white/60 border border-zinc-100/50 hover:bg-white hover:border-zinc-200/60 transition-all duration-300 cursor-default"
             >
               {/* Icon Container */}
               <div className="text-blue-500 mb-5">{item.icon}</div>

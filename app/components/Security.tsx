@@ -1,12 +1,11 @@
 "use client";
 import React from "react";
+import { motion } from "framer-motion";
 import { Shield, Lock, BadgeCheck } from "lucide-react";
 
 const Security = () => {
   return (
     <section className="w-full font-inter overflow-hidden bg-white">
-      {/* Top Full-Width Divider */}
-
       {/* Subheader Row */}
       <div className="max-w-6xl mx-auto border-x border-zinc-200 bg-white">
         <h2 className="pt-10 pb-5 text-center font-mono text-sm tracking-tight text-zinc-500 uppercase md:pt-20 md:pb-10">
@@ -26,7 +25,7 @@ const Security = () => {
         <div className="absolute -bottom-[2px] -right-[2px] w-4 h-4 border-b-[3px] border-r-[3px] border-blue-500 z-20"></div>
 
         {/* Left Column: Text & CTA */}
-        <div className="flex flex-col justify-center">
+        <div className="flex flex-col justify-center items-start">
           <h2 className="text-zinc-900 text-2xl font-medium tracking-tight md:text-3xl lg:text-4xl text-left">
             Scale securely with confidence
           </h2>
@@ -34,13 +33,71 @@ const Security = () => {
             Our AI assistant is designed with enterprise-grade security
             practices and compliant with global data protection standards.
           </p>
-          <button className="rounded-xl px-6 py-2.5 text-center text-sm font-medium transition duration-150 active:scale-[0.98] sm:text-base bg-zinc-900 text-white hover:bg-zinc-800 mt-6 mb-8 inline-block w-full md:w-fit shadow-sm">
-            Start for free
-          </button>
+
+          {/* --- UPDATED CTA Button with Bracket Accents --- */}
+          <motion.div
+            initial="rest"
+            whileHover="hover"
+            className="relative mt-8 mb-4 p-[3px] cursor-pointer group inline-block w-full sm:w-auto"
+          >
+            {/* Clamping Brackets */}
+            <motion.div
+              variants={{ rest: { x: 0, y: 0 }, hover: { x: 2, y: 2 } }}
+              className="absolute top-0 left-0 size-2.5 border-t-[2px] border-l-[2px] border-zinc-400 group-hover:border-blue-500 transition-colors pointer-events-none"
+            ></motion.div>
+            <motion.div
+              variants={{ rest: { x: 0, y: 0 }, hover: { x: -2, y: 2 } }}
+              className="absolute top-0 right-0 size-2.5 border-t-[2px] border-r-[2px] border-zinc-400 group-hover:border-blue-500 transition-colors pointer-events-none"
+            ></motion.div>
+            <motion.div
+              variants={{ rest: { x: 0, y: 0 }, hover: { x: 2, y: -2 } }}
+              className="absolute bottom-0 left-0 size-2.5 border-b-[2px] border-l-[2px] border-zinc-400 group-hover:border-blue-500 transition-colors pointer-events-none"
+            ></motion.div>
+            <motion.div
+              variants={{ rest: { x: 0, y: 0 }, hover: { x: -2, y: -2 } }}
+              className="absolute bottom-0 right-0 size-2.5 border-b-[2px] border-r-[2px] border-zinc-400 group-hover:border-blue-500 transition-colors pointer-events-none"
+            ></motion.div>
+
+            <button className="w-full sm:w-fit py-3 px-8 rounded-none text-sm font-mono tracking-tight transition-colors flex items-center justify-center overflow-hidden bg-blue-600 text-white hover:bg-blue-700">
+              {/* 3D Text Flip Container */}
+              <div
+                className="relative h-5 flex items-center justify-center"
+                style={{ perspective: "1000px" }}
+              >
+                <motion.span
+                  variants={{
+                    rest: { y: 0, rotateX: 0, opacity: 1 },
+                    hover: { y: -20, rotateX: 90, opacity: 0 },
+                  }}
+                  transition={{ type: "spring", stiffness: 400, damping: 25 }}
+                  className="absolute inset-0 flex items-center justify-center whitespace-nowrap"
+                >
+                  Start for free
+                </motion.span>
+
+                <motion.span
+                  variants={{
+                    rest: { y: 20, rotateX: -90, opacity: 0 },
+                    hover: { y: 0, rotateX: 0, opacity: 1 },
+                  }}
+                  transition={{ type: "spring", stiffness: 400, damping: 25 }}
+                  className="absolute inset-0 flex items-center justify-center whitespace-nowrap"
+                  aria-hidden="true"
+                >
+                  Start for free
+                </motion.span>
+
+                {/* Invisible text to maintain button width */}
+                <span className="invisible whitespace-nowrap">
+                  Start for free
+                </span>
+              </div>
+            </button>
+          </motion.div>
         </div>
 
-        {/* Right Column: Badges (Matches inspected code spacing) */}
-        <div className="flex items-center justify-center gap-8 md:gap-10">
+        {/* Right Column: Badges */}
+        <div className="flex items-center justify-center gap-8 md:gap-10 mt-10 md:mt-0">
           {/* Badge 1: CCPA */}
           <div className="flex flex-col items-center gap-3 group w-14">
             <div className="relative w-12 h-12 flex items-center justify-center text-zinc-400 group-hover:text-zinc-600 transition-colors">

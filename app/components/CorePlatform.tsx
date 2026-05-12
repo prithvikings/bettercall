@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import { motion } from "framer-motion";
+
 const CorePlatform = () => {
   return (
     <div className="relative z-20 w-full border-b border-blue-200 font-poppins bg-white">
@@ -32,6 +33,7 @@ const CorePlatform = () => {
           </div>
 
           {/* Right Column: Description and Button */}
+          {/* Right Column: Description and Button */}
           <div className="flex flex-col items-start text-left max-w-md md:mt-12">
             <p className="text-sm text-zinc-500 font-poppins mb-6 tracking-wide leading-relaxed">
               As you grow, structure matters. Personal devices cause missed
@@ -39,22 +41,78 @@ const CorePlatform = () => {
               mess into a reliable system.
             </p>
 
-            <button className="group flex items-center gap-2 px-5 py-2.5 bg-zinc-900 text-white text-sm font-medium hover:bg-zinc-800 transition-all duration-300 shadow-sm border border-transparent hover:border-zinc-700">
-              Explore features
-              <svg
-                className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M14 5l7 7m0 0l-7 7m7-7H3"
-                ></path>
-              </svg>
-            </button>
+            {/* --- Cyber-Brutalist CTA Button (Fixed Hover Glitch) --- */}
+            <motion.div
+              initial="rest"
+              whileHover="hover"
+              className="relative p-[3px] group cursor-pointer"
+            >
+              {/* Clamping Brackets (Changed to border-blue-300 on hover to prevent the "cutout" visual glitch) */}
+              <motion.div
+                variants={{ rest: { x: 0, y: 0 }, hover: { x: 2, y: 2 } }}
+                className="absolute top-0 left-0 size-2.5 border-t-[2px] border-l-[2px] border-zinc-300 group-hover:border-blue-300 transition-colors pointer-events-none"
+              ></motion.div>
+              <motion.div
+                variants={{ rest: { x: 0, y: 0 }, hover: { x: -2, y: 2 } }}
+                className="absolute top-0 right-0 size-2.5 border-t-[2px] border-r-[2px] border-zinc-300 group-hover:border-blue-300 transition-colors pointer-events-none"
+              ></motion.div>
+              <motion.div
+                variants={{ rest: { x: 0, y: 0 }, hover: { x: 2, y: -2 } }}
+                className="absolute bottom-0 left-0 size-2.5 border-b-[2px] border-l-[2px] border-zinc-300 group-hover:border-blue-300 transition-colors pointer-events-none"
+              ></motion.div>
+              <motion.div
+                variants={{ rest: { x: 0, y: 0 }, hover: { x: -2, y: -2 } }}
+                className="absolute bottom-0 right-0 size-2.5 border-b-[2px] border-r-[2px] border-zinc-300 group-hover:border-blue-300 transition-colors pointer-events-none"
+              ></motion.div>
+
+              <button className="py-2.5 px-6 rounded-none text-sm font-mono tracking-tight transition-colors flex items-center justify-center gap-2 overflow-hidden bg-blue-600 hover:bg-blue-700 text-white shadow-sm w-full sm:w-auto">
+                {/* 3D Text Flip Container */}
+                <div
+                  className="relative h-5 flex items-center justify-center"
+                  style={{ perspective: "1000px" }}
+                >
+                  <motion.span
+                    variants={{
+                      rest: { y: 0, rotateX: 0, opacity: 1 },
+                      hover: { y: -20, rotateX: 90, opacity: 0 },
+                    }}
+                    transition={{ type: "spring", stiffness: 400, damping: 25 }}
+                    className="absolute inset-0 flex items-center justify-center whitespace-nowrap"
+                  >
+                    Explore features
+                  </motion.span>
+                  <motion.span
+                    variants={{
+                      rest: { y: 20, rotateX: -90, opacity: 0 },
+                      hover: { y: 0, rotateX: 0, opacity: 1 },
+                    }}
+                    transition={{ type: "spring", stiffness: 400, damping: 25 }}
+                    className="absolute inset-0 flex items-center justify-center whitespace-nowrap"
+                    aria-hidden="true"
+                  >
+                    Explore features
+                  </motion.span>
+                  <span className="invisible whitespace-nowrap">
+                    Explore features
+                  </span>
+                </div>
+
+                {/* Animated Arrow Icon */}
+                <svg
+                  className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1 shrink-0"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M14 5l7 7m0 0l-7 7m7-7H3"
+                  ></path>
+                </svg>
+              </button>
+            </motion.div>
           </div>
         </div>
 
@@ -671,7 +729,6 @@ const CorePlatform = () => {
           </div>
 
           {/* Card 3: Team Collaboration */}
-          {/* Card 3: Team Collaboration */}
           <div className="group relative bg-[#faf9f5] border border-zinc-200 px-4 py-4 pb-5 flex flex-col h-[400px] transition-colors duration-300 hover:border-zinc-300 hover:bg-zinc-50 overflow-hidden md:col-span-1">
             {/* Corner Accents */}
             <div className="absolute -top-[1px] -left-[1px] w-3 h-3 border-t-[2px] border-l-[2px] border-blue-500 z-20 transition-all duration-300 group-hover:w-4 group-hover:h-4"></div>
@@ -834,7 +891,6 @@ const CorePlatform = () => {
 
           {/* --- BOTTOM ROW (2/3 Split) --- */}
 
-          {/* Card 4: Automations & Follow-ups (Wide Card) */}
           {/* Card 4: Automations & Follow-ups (Wide Card) */}
           <div className="group relative bg-[#faf9f5] border border-zinc-200 px-4 py-4 pb-5 flex flex-col h-[400px] transition-colors duration-300 hover:border-zinc-300 hover:bg-zinc-50 overflow-hidden md:col-span-2">
             {/* Corner Accents */}
