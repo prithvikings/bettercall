@@ -22,7 +22,7 @@ const Problem = () => {
           <span className="font-poppins">The Communication Gap</span>
         </div>
 
-        <h2 className="text-5xl font-inter tracking-tighter font-semibold text-zinc-800">
+        <h2 className="text-3xl md:text-5xl font-normal tracking-tight font-poppins text-zinc-900">
           Too many chats. <br /> Too many missed leads.
         </h2>
 

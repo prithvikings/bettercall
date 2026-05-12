@@ -8,6 +8,11 @@ import Industries from "./components/Industries";
 import ArtificialSection from "./components/ArtificialSection";
 import UseCase from "./components/UseCase";
 import Benifits from "./components/Benifits";
+import TestimonialSection from "./components/Testimonial";
+import Pricing from "./components/Pricing";
+import Security from "./components/Security";
+import Faq from "./components/Faq";
+import FinalCTA from "./components/FinalCTA";
 
 const page = () => {
   return (
@@ -22,6 +27,12 @@ const page = () => {
       <UseCase />
       <Industries />
       <Benifits />
+      <TestimonialSection />
+      <Pricing />
+      <Security />
+      <FinalCTA />
+      {/* <Faq /> */}
+
       {/* --- Bottom Faded Blur Effects --- */}
 
       {/* 1. Ambient Glowing Blur (Increased size, blur radius, and opacity)
