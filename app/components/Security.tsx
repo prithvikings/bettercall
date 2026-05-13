@@ -29,9 +29,10 @@ const Security = () => {
           <h2 className="text-zinc-900 text-2xl font-medium tracking-tight md:text-3xl lg:text-4xl text-left">
             Scale securely with confidence
           </h2>
-          <p className="text-sm font-medium tracking-tight text-zinc-600 md:text-sm lg:text-base mt-4 text-left max-w-md">
-            Our AI assistant is designed with enterprise-grade security
-            practices and compliant with global data protection standards.
+          <p className="text-sm tracking-tight text-zinc-600  mt-4 text-left max-w-md">
+            Our company operates under official telecom licenses issued by the
+            Department of Telecommunications - so that your business calls are
+            secure and compliant.
           </p>
 
           {/* --- UPDATED CTA Button with Bracket Accents --- */}
@@ -98,40 +99,17 @@ const Security = () => {
 
         {/* Right Column: Badges */}
         <div className="flex items-center justify-center gap-8 md:gap-10 mt-10 md:mt-0">
-          {/* Badge 1: CCPA */}
-          <div className="flex flex-col items-center gap-3 group w-14">
-            <div className="relative w-12 h-12 flex items-center justify-center text-zinc-400 group-hover:text-zinc-600 transition-colors">
-              <Shield className="w-10 h-10 stroke-[1.5]" />
-              <div className="absolute -right-2 -top-1 bg-zinc-50 p-1">
-                <Lock className="w-4 h-4 stroke-[2.5] text-zinc-500" />
-              </div>
+          <div className="flex flex-col items-center gap-3 group">
+            <div className="w-24 h-24 md:w-32 md:h-32 flex items-center justify-center transition-transform duration-500 group-hover:scale-105">
+              <img
+                src="/logos/dot.avif"
+                alt="DOT License"
+                className="w-full h-full object-contain"
+              />
             </div>
-            <div className="flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider text-zinc-500">
-              <div className="w-1 h-1 rounded-full bg-zinc-400"></div> CCPA
-            </div>
-          </div>
-
-          {/* Badge 2: GDPR */}
-          <div className="flex flex-col items-center gap-3 group w-14">
-            <div className="w-12 h-12 flex items-center justify-center text-zinc-400 group-hover:text-zinc-600 transition-colors">
-              <BadgeCheck className="w-11 h-11 stroke-[1.5]" />
-            </div>
-            <div className="flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider text-zinc-500">
-              <div className="w-1 h-1 rounded-full bg-zinc-400"></div> GDPR
-            </div>
-          </div>
-
-          {/* Badge 3: ISO 27001 */}
-          <div className="flex flex-col items-center gap-3 group w-14">
-            <div className="w-12 h-12 flex items-center justify-center rounded-full border-[1.5px] border-zinc-400 group-hover:border-zinc-600 transition-colors">
-              <div className="text-[9px] font-bold leading-tight text-center text-zinc-400 group-hover:text-zinc-600">
-                ISO
-                <br />
-                27001
-              </div>
-            </div>
-            <div className="flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider text-zinc-500">
-              <div className="w-1 h-1 rounded-full bg-zinc-400"></div> ISO
+            <div className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-zinc-500">
+              <div className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse"></div>{" "}
+              DOT Licensed
             </div>
           </div>
         </div>

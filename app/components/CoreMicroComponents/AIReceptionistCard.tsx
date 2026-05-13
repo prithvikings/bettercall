@@ -1,180 +1,87 @@
 "use client";
+import { HugeiconsIcon } from "@hugeicons/react";
+import { Cancel01Icon, ChatSparkIcon } from "@hugeicons/core-free-icons";
 import React from "react";
-import { motion } from "framer-motion";
 
 export const AIReceptionistCard = () => {
   return (
-    <div className="group relative bg-[#faf9f5] border border-zinc-200 px-4 py-4 pb-5 flex flex-col h-[400px] transition-colors duration-300 hover:border-zinc-300 hover:bg-zinc-50 overflow-hidden md:col-span-1">
+    // FIXED: Removed 'overflow-hidden' to ensure corners are fully visible
+    <div className="group relative bg-[#faf9f5] border border-zinc-200 px-4 py-4 pb-5 flex flex-col h-[400px] transition-colors duration-300 hover:border-zinc-300 hover:bg-zinc-50 md:col-span-1 cursor-default">
+      {/* Corner Accents */}
       <div className="absolute -top-[1px] -left-[1px] w-3 h-3 border-t-[2px] border-l-[2px] border-blue-500 z-20 transition-all duration-300 group-hover:w-4 group-hover:h-4"></div>
       <div className="absolute -top-[1px] -right-[1px] w-3 h-3 border-t-[2px] border-r-[2px] border-blue-500 z-20 transition-all duration-300 group-hover:w-4 group-hover:h-4"></div>
       <div className="absolute -bottom-[1px] -left-[1px] w-3 h-3 border-b-[2px] border-l-[2px] border-blue-500 z-20 transition-all duration-300 group-hover:w-4 group-hover:h-4"></div>
       <div className="absolute -bottom-[1px] -right-[1px] w-3 h-3 border-b-[2px] border-r-[2px] border-blue-500 z-20 transition-all duration-300 group-hover:w-4 group-hover:h-4"></div>
 
-      <div className="flex-1 w-full bg-white border border-zinc-200 mb-5 flex items-center justify-center relative z-10 overflow-hidden shadow-inner rounded-sm">
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#f0f0f0_1px,transparent_1px),linear-gradient(to_bottom,#f0f0f0_1px,transparent_1px)] bg-[size:1rem_1rem] opacity-60"></div>
+      {/* --- Canvas: The Autonomous Interceptor --- */}
+      {/* Inner canvas keeps overflow-hidden to constrain the background grid */}
+      <div className="flex-1 w-full bg-white border border-zinc-200 mb-5 flex flex-col items-center justify-start relative z-10 overflow-hidden shadow-inner pt-5 pb-2">
+        {/* Subtle Background Grid */}
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#f4f4f5_1px,transparent_1px),linear-gradient(to_bottom,#f4f4f5_1px,transparent_1px)] bg-[size:1rem_1rem] [mask-image:radial-gradient(ellipse_at_center,white,transparent_80%)] opacity-80"></div>
 
-        <div className="relative w-[240px] h-[160px] flex items-center justify-center">
-          <motion.div
-            animate={{
-              y: [-10, 0, 0, -20, -20, -25, -25, -10],
-              scale: [0.9, 1, 1, 1.05, 1.05, 0.95, 0.95, 0.9],
-              borderColor: [
-                "#e4e4e7",
-                "#e4e4e7",
-                "#e4e4e7",
-                "#d8b4fe",
-                "#d8b4fe",
-                "#d8b4fe",
-                "#e4e4e7",
-                "#e4e4e7",
-              ],
-              backgroundColor: [
-                "#ffffff",
-                "#ffffff",
-                "#ffffff",
-                "#faf5ff",
-                "#faf5ff",
-                "#faf5ff",
-                "#ffffff",
-                "#ffffff",
-              ],
-              boxShadow: [
-                "0 1px 2px rgba(0,0,0,0.05)",
-                "0 4px 12px rgba(0,0,0,0.05)",
-                "0 4px 12px rgba(0,0,0,0.05)",
-                "0 0 0 4px rgba(168,85,247,0.15)",
-                "0 0 0 4px rgba(168,85,247,0.15)",
-                "0 1px 2px rgba(0,0,0,0.05)",
-                "0 1px 2px rgba(0,0,0,0.05)",
-                "0 1px 2px rgba(0,0,0,0.05)",
-              ],
-              opacity: [0, 1, 1, 1, 1, 1, 0, 0],
-            }}
-            transition={{
-              duration: 6,
-              repeat: Infinity,
-              times: [0, 0.1, 0.25, 0.35, 0.6, 0.7, 0.9, 1],
-              ease: "easeInOut",
-            }}
-            className="absolute z-30 w-[140px] h-[36px] border rounded-full flex overflow-hidden"
-          >
-            <motion.div
-              animate={{ opacity: [0, 1, 1, 0, 0, 0, 0, 0] }}
-              transition={{
-                duration: 6,
-                repeat: Infinity,
-                times: [0, 0.1, 0.25, 0.35, 0.6, 0.7, 0.9, 1],
-              }}
-              className="absolute inset-0 flex items-center justify-center gap-2 px-3"
-            >
-              <div className="w-5 h-5 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center animate-pulse">
-                <svg
-                  className="w-2.5 h-2.5"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
-                  <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"></path>
-                </svg>
-              </div>
-              <span className="text-[10px] font-medium text-zinc-700">
-                Incoming...
-              </span>
-            </motion.div>
-            <motion.div
-              animate={{ opacity: [0, 0, 0, 1, 1, 1, 0, 0] }}
-              transition={{
-                duration: 6,
-                repeat: Infinity,
-                times: [0, 0.1, 0.25, 0.35, 0.6, 0.7, 0.9, 1],
-              }}
-              className="absolute inset-0 flex items-center justify-center gap-2 px-3"
-            >
-              <div className="text-purple-600">
-                <svg
-                  className="w-3.5 h-3.5"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"
-                  ></path>
-                </svg>
-              </div>
-              <span className="text-[10px] font-semibold text-purple-700">
-                AI Active
-              </span>
-            </motion.div>
-          </motion.div>
+        {/* --- Stage 1: The Missed Call --- */}
+        <div className="bg-white border border-zinc-200 px-3 py-1.5 shadow-sm flex items-center gap-2 z-20 relative rounded-full">
+          <div className="border border-zinc-200 text-red-600 bg-red-100 p-0.5 rounded-2xl">
+            <HugeiconsIcon
+              icon={Cancel01Icon}
+              size={12}
+              color="currentColor"
+              strokeWidth={1}
+            />
+          </div>
+          <span className="text-[10px] font-mono font-medium text-zinc-700 tracking-tight">
+            +91 8709345654
+          </span>
+          <span className="text-[8px] bg-red-50 text-red-600 border border-red-100 px-1.5 py-[1px] rounded-sm tracking-wider ml-1">
+            MISSED
+          </span>
+        </div>
 
-          <motion.div
-            animate={{
-              y: [0, 0, 0, 15, 15, 5, 5, 0],
-              opacity: [0, 0, 0, 1, 1, 0, 0, 0],
-            }}
-            transition={{
-              duration: 6,
-              repeat: Infinity,
-              times: [0, 0.1, 0.25, 0.35, 0.6, 0.7, 0.9, 1],
-              ease: "easeInOut",
-            }}
-            className="absolute z-20 flex items-center gap-1"
-          >
-            {[1, 2, 3, 4, 5].map((i) => (
-              <motion.div
-                key={i}
-                animate={{ height: ["4px", "16px", "4px"] }}
-                transition={{
-                  duration: 0.8,
-                  repeat: Infinity,
-                  delay: i * 0.1,
-                  ease: "easeInOut",
-                }}
-                className="w-1 bg-purple-300 rounded-full"
-              />
-            ))}
-          </motion.div>
+        {/* Vertical Pipeline connecting 1 to 2 */}
+        <div className="w-px h-4 border-l-2 border-dashed border-zinc-200 z-10 my-1"></div>
 
-          <motion.div
-            animate={{
-              y: [30, 30, 30, 30, 30, 15, 15, 30],
-              opacity: [0, 0, 0, 0, 0, 1, 1, 0],
-              scale: [0.9, 0.9, 0.9, 0.9, 0.9, 1, 1, 0.9],
-            }}
-            transition={{
-              duration: 6,
-              repeat: Infinity,
-              times: [0, 0.1, 0.25, 0.35, 0.6, 0.7, 0.9, 1],
-              ease: "backOut",
-            }}
-            className="absolute z-10 w-[150px] bg-white border border-zinc-200 shadow-lg rounded-md p-2.5 flex flex-col gap-1.5"
-          >
-            <div className="flex items-center gap-1.5 border-b border-zinc-100 pb-1.5">
-              <div className="w-3.5 h-3.5 bg-green-100 text-green-600 rounded-full flex items-center justify-center">
-                <svg
-                  className="w-2.5 h-2.5"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="3"
-                    d="M5 13l4 4L19 7"
-                  ></path>
-                </svg>
+        {/* --- Stage 2: The AI Engine (Transcript) --- */}
+        <div className="bg-white border border-blue-200 shadow-sm rounded-md w-[85%] relative z-20 overflow-hidden flex flex-col">
+          {/* AI Header */}
+          <div className="bg-blue-50/80 border-b border-blue-100 px-2 py-1.5 flex items-center gap-1.5">
+            <HugeiconsIcon
+              icon={ChatSparkIcon}
+              size={16}
+              color="blue"
+              strokeWidth={1}
+            />
+
+            <span className="text-[9px] font-medium text-blue-800 tracking-tight">
+              AI Intercept Active
+            </span>
+          </div>
+
+          {/* Tiny Chat Interface */}
+          <div className="p-2 pb-8 flex flex-col gap-2 bg-white">
+            {/* User Message */}
+            <div className="flex justify-start">
+              <div className="bg-zinc-100 text-zinc-600 text-[9px] px-2 py-1.5 rounded-r-md rounded-bl-md max-w-[85%] leading-tight">
+                I couldn't reach anyone. Can I book a demo?
               </div>
-              <span className="text-[9px] font-bold text-zinc-800">
-                Demo Booked
-              </span>
             </div>
-            <div className="flex items-center gap-1.5 text-zinc-500">
+            {/* AI Message */}
+            <div className="flex justify-end">
+              <div className="bg-blue-500 text-white text-[9px] px-2 py-1.5 rounded-l-md rounded-br-md max-w-[85%] leading-tight shadow-sm">
+                Absolutely! I've scheduled that for tomorrow at 2 PM.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Vertical Pipeline connecting 2 to 3 */}
+        <div className="w-px h-4 border-l-2 border-dashed border-zinc-200 z-10 my-1"></div>
+
+        {/* --- Stage 3: The Action (Calendar Event) --- */}
+        <div className="bg-white border border-emerald-200 shadow-sm rounded-md p-2 flex flex-col gap-1 w-[70%] z-20 relative">
+          <div className="flex items-center gap-1.5 border-b border-emerald-50 pb-1.5">
+            <div className="w-3.5 h-3.5 bg-emerald-100 text-emerald-600  rounded-full flex items-center justify-center">
               <svg
-                className="w-3 h-3"
+                className="w-2.5 h-2.5"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -182,13 +89,31 @@ export const AIReceptionistCard = () => {
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                  strokeWidth="3"
+                  d="M5 13l4 4L19 7"
                 ></path>
               </svg>
-              <span className="text-[8px] font-medium">Tomorrow, 2:00 PM</span>
             </div>
-          </motion.div>
+            <span className="text-[9px] font-semibold text-zinc-800">
+              Demo Booked
+            </span>
+          </div>
+          <div className="flex items-center gap-1 text-zinc-500 pt-0.5">
+            <svg
+              className="w-3 h-3 text-emerald-500"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+              ></path>
+            </svg>
+            <span className="text-[8px] font-medium">Tomorrow, 2:00 PM</span>
+          </div>
         </div>
       </div>
 

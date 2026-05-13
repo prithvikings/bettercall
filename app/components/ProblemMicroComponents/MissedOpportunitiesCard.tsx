@@ -1,69 +1,90 @@
 "use client";
-import React from "react";
-import { motion } from "framer-motion";
+import React, { useEffect, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import {
+  CallMissed04Icon,
+  NotificationOff02Icon,
+} from "@hugeicons/core-free-icons";
+import { HugeiconsIcon } from "@hugeicons/react";
 
 // --- Framer Motion Variants ---
-// These define the structural states of our animations
 const cardVariants = {
   idle: {},
   hover: {},
 };
 
-const notificationVariants = {
-  idle: {
-    y: 0,
-    opacity: 1,
-    borderColor: "#e4e4e7",
-    boxShadow: "0 4px 6px -1px rgba(0, 0, 0, 0.05)",
+const carddata = [
+  {
+    companyName: "State Bank of India",
+    callType: "Missed Call • 5 May, 07:30",
+    value: "$5,000",
+    logo: "/logos/SBI.webp",
   },
-  hover: {
-    y: [-20, 0, 0, 0, -20],
-    opacity: [0, 1, 1, 1, 0],
-    borderColor: ["#e4e4e7", "#e4e4e7", "#fca5a5", "#fca5a5", "#e4e4e7"],
-    transition: {
-      duration: 3.5,
-      repeat: Infinity,
-      times: [0, 0.15, 0.5, 0.85, 1],
-      ease: "easeInOut",
-    },
+  {
+    companyName: "Meta Platforms",
+    callType: "Missed Call • 3 May, 10:20",
+    value: "$2,000",
+    logo: "/logos/meta.png",
   },
-};
-
-const iconVariants = {
-  idle: { backgroundColor: "#22c55e", scale: 1 },
-  hover: {
-    backgroundColor: ["#22c55e", "#22c55e", "#ef4444", "#ef4444", "#22c55e"],
-    scale: [1, 1.1, 1, 1, 1],
-    transition: {
-      duration: 3.5,
-      repeat: Infinity,
-      times: [0, 0.15, 0.5, 0.85, 1],
-    },
+  {
+    companyName: "Apollo Tyres",
+    callType: "Missed Call • 1 May, 04:10",
+    value: "$15,000",
+    logo: "/logos/appollo.png",
   },
-};
-
-const pillVariants = {
-  idle: { y: 10, opacity: 0, scale: 0.9 },
-  hover: {
-    y: [10, 10, 45, 60],
-    opacity: [0, 0, 1, 0],
-    scale: [0.9, 0.9, 1, 0.9],
-    transition: {
-      duration: 3.5,
-      repeat: Infinity,
-      times: [0, 0.5, 0.65, 0.9],
-      ease: "backOut",
-    },
+  {
+    companyName: "Shramik Card",
+    callType: "Missed Call • 2 May, 12:30",
+    value: "$11,000",
+    logo: "/logos/shram.png",
   },
-};
+];
 
 export const MissedOpportunitiesCard = () => {
+  const CARD_OFFSET = 12;
+  const SCALE_FACTOR = 0.06;
+  const [cards, setCards] = useState(carddata);
+  const [isHovering, setIsHovering] = useState(false);
+
+  // --- Advanced Timing Logic ---
+  useEffect(() => {
+    let timeout: NodeJS.Timeout;
+    let interval: NodeJS.Timeout;
+
+    const shiftCards = () => {
+      setCards((prevCards) => {
+        const newArray = [...prevCards];
+        // Move the last element to the front
+        newArray.unshift(newArray.pop()!);
+        return newArray;
+      });
+    };
+
+    if (isHovering) {
+      // 1. Wait exactly 1 second for the very first snappy reaction
+      timeout = setTimeout(() => {
+        shiftCards();
+        // 2. Then transition into the relaxed 2-second continuous loop
+        interval = setInterval(shiftCards, 2000);
+      }, 1000);
+    }
+
+    // Cleanup both timers when mouse leaves or component unmounts
+    return () => {
+      clearTimeout(timeout);
+      clearInterval(interval);
+    };
+  }, [isHovering]);
+
   return (
     <motion.div
       initial="idle"
       whileHover="hover"
+      onMouseEnter={() => setIsHovering(true)}
+      onMouseLeave={() => setIsHovering(false)}
       variants={cardVariants}
-      className="group relative bg-[#faf9f5] border border-zinc-200 px-3.5 py-3 pb-4 flex flex-col h-[350px] transition-colors duration-300 hover:border-zinc-300 hover:bg-zinc-50 overflow-hidden cursor-crosshair"
+      // REMOVED 'overflow-hidden' from this container so the corners don't clip!
+      className="group relative bg-[#faf9f5] border border-zinc-200 px-3.5 py-3 pb-4 flex flex-col h-[350px] transition-colors duration-300 hover:border-zinc-300 cursor-default"
     >
       {/* --- Cyber-Brutalist Corner Accents --- */}
       <div className="absolute -top-[1px] -left-[1px] w-3 h-3 border-t-[2px] border-l-[2px] border-blue-500 z-20 transition-all duration-300 group-hover:w-4 group-hover:h-4"></div>
@@ -72,43 +93,98 @@ export const MissedOpportunitiesCard = () => {
       <div className="absolute -bottom-[1px] -right-[1px] w-3 h-3 border-b-[2px] border-r-[2px] border-blue-500 z-20 transition-all duration-300 group-hover:w-4 group-hover:h-4"></div>
 
       {/* --- Canvas 1: The "Lost Value" Node --- */}
-      <div className="flex-1 w-full bg-white border border-zinc-200 mb-4 flex items-center justify-center relative z-10 overflow-hidden shadow-inner group-hover:shadow-md transition-shadow duration-500">
-        {/* Technical Grid Background */}
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#f0f0f0_1px,transparent_1px),linear-gradient(to_bottom,#f0f0f0_1px,transparent_1px)] bg-[size:1rem_1rem] opacity-50 mask-image-[radial-gradient(ellipse_60%_60%_at_50%_50%,#000_70%,transparent_100%)]"></div>
+      <div className="flex-1 w-full bg-white border border-zinc-200 mb-4 flex items-center justify-center relative z-10 overflow-hidden shadow-inner transition-shadow duration-500">
+        {/* --- Ambient Canvas Blur Effect --- */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 bg-red-500/10 blur-[40px] rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none z-0"></div>
 
-        <div className="relative w-full flex flex-col items-center">
-          {/* Incoming Notification */}
-          <motion.div
-            variants={notificationVariants}
-            className="w-3/4 bg-white border shadow-sm p-3 flex flex-col gap-2 relative z-20"
-          >
-            <div className="flex items-center gap-3">
-              <motion.div
-                variants={iconVariants}
-                className="w-6 h-6 rounded-full flex items-center justify-center text-white shadow-sm"
-              >
-                <svg
-                  className="w-3 h-3"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
+        <div className="relative w-full flex flex-col items-center mt-6 z-10">
+          {/* --- The Animated Stack Wrapper --- */}
+          <div className="relative w-64 h-[68px]">
+            {cards.map((card, index) => {
+              return (
+                <motion.div
+                  key={card.companyName}
+                  className="absolute left-0 w-full h-full bg-white rounded-xl flex items-center px-3 border border-zinc-200 shadow-sm"
+                  style={{
+                    transformOrigin: "top center",
+                  }}
+                  animate={{
+                    top: index * -CARD_OFFSET,
+                    scale: 1 - index * SCALE_FACTOR,
+                    zIndex: cards.length - index,
+                    opacity: index < 3 ? 1 : 0,
+                  }}
+                  transition={{
+                    duration: 0.6,
+                    ease: "easeInOut",
+                  }}
                 >
-                  <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"></path>
-                </svg>
-              </motion.div>
-              <div className="flex-1">
-                <div className="h-2 w-16 bg-zinc-200 mb-1 rounded-sm"></div>
-                <div className="h-1.5 w-10 bg-zinc-100 rounded-sm"></div>
-              </div>
-            </div>
-          </motion.div>
+                  {/* --- Inner Content Wrapper --- */}
+                  <motion.div
+                    className="w-full flex items-center justify-between gap-2"
+                    animate={{
+                      opacity: index === 0 ? 1 : 0,
+                    }}
+                    transition={{
+                      duration: 0.3,
+                      ease: "easeInOut",
+                    }}
+                  >
+                    <div className="flex gap-3 items-center">
+                      <div className="bg-zinc-100 rounded-full w-9 h-9 shrink-0 flex items-center justify-center border border-zinc-200 overflow-hidden shadow-xs">
+                        <img
+                          src={card.logo}
+                          alt={card.companyName}
+                          className="w-full h-full object-contain p-1"
+                        />
+                      </div>
+                      <div className="flex flex-col items-start">
+                        <p className="text-sm font-medium font-poppins text-zinc-800 leading-tight">
+                          {card.companyName}
+                        </p>
+                        <p className="text-[10px] font-poppins font-inter text-red-500 mt-0.5">
+                          {card.callType}
+                        </p>
+                      </div>
+                    </div>
+                    <HugeiconsIcon
+                      className="text-red-500 shrink-0"
+                      icon={CallMissed04Icon}
+                      size={24}
+                      strokeWidth={1.5}
+                    />
+                  </motion.div>
+                </motion.div>
+              );
+            })}
+          </div>
 
-          {/* Dropping Value Pill */}
-          <motion.div
-            variants={pillVariants}
-            className="absolute top-8 bg-red-50 text-red-600 text-[10px] font-semibold px-2.5 py-1 border border-red-200 shadow-sm z-10"
-          >
-            - ₹1.2L Lost
-          </motion.div>
+          {/* --- Dynamic & Animated "Lost Value" Notification Pop --- */}
+          <div className="h-[36px] mt-6 flex items-center justify-center relative z-20">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={cards[0].companyName} // Triggers pop animation when the top card changes
+                initial={{ opacity: 0, scale: 0.6, y: 15 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.8, y: -10 }}
+                transition={{
+                  type: "spring",
+                  stiffness: 500,
+                  damping: 25,
+                  mass: 1,
+                }}
+                className="flex items-center gap-2 text-xs font-medium text-red-600 bg-white/90 backdrop-blur-md border border-red-200 px-3 py-1.5 rounded-full shadow-md"
+              >
+                <HugeiconsIcon
+                  icon={NotificationOff02Icon}
+                  size={16}
+                  strokeWidth={2}
+                  className="text-red-500"
+                />
+                Lost {cards[0].value}
+              </motion.div>
+            </AnimatePresence>
+          </div>
         </div>
       </div>
 

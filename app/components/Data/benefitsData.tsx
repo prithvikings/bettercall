@@ -1,3 +1,8 @@
+import {
+  ComputerProtectionIcon,
+  Refresh03Icon,
+} from "@hugeicons/core-free-icons";
+import { HugeiconsIcon } from "@hugeicons/react";
 import React from "react";
 
 export const leftCards = [
@@ -28,19 +33,7 @@ export const leftCards = [
     title: "Iterate Rapidly",
     desc: "Visually orchestrate autonomous agents without writing boilerplate code",
     icon: (
-      <svg
-        width="20"
-        height="20"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      >
-        <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path>
-        <path d="M3 3v5h5"></path>
-      </svg>
+      <HugeiconsIcon icon={Refresh03Icon} size={20} className="text-blue-500" />
     ),
   },
   {
@@ -113,20 +106,11 @@ export const rightCards = [
     title: "Automate More",
     desc: "Visually orchestrate autonomous agents without writing boilerplate code",
     icon: (
-      <svg
-        width="20"
-        height="20"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      >
-        <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
-        <line x1="8" y1="21" x2="16" y2="21"></line>
-        <line x1="12" y1="17" x2="12" y2="21"></line>
-      </svg>
+      <HugeiconsIcon
+        icon={ComputerProtectionIcon}
+        size={20}
+        className="text-blue-500"
+      />
     ),
   },
 ];

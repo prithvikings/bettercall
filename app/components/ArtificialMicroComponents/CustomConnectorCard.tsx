@@ -1,6 +1,8 @@
 "use client";
 import React from "react";
 import { motion, Variants } from "framer-motion";
+import { HugeiconsIcon } from "@hugeicons/react";
+import { CodeFolderIcon } from "@hugeicons/core-free-icons";
 
 export const CustomConnectorCard = ({ variants }: { variants: Variants }) => {
   return (
@@ -9,18 +11,11 @@ export const CustomConnectorCard = ({ variants }: { variants: Variants }) => {
       className="p-10 bg-white/40 group hover:bg-zinc-50 transition-colors"
     >
       <div className="flex items-center gap-2 text-zinc-800 font-medium mb-3">
-        <svg
-          width="16"
-          height="16"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-          className="text-zinc-500"
-        >
-          <polyline points="16 18 22 12 16 6"></polyline>
-          <polyline points="8 6 2 12 8 18"></polyline>
-        </svg>
+        <HugeiconsIcon
+          icon={CodeFolderIcon}
+          size={20}
+          className="text-zinc-500 group-hover:text-zinc-900 transition-colors duration-200 ease-in-out"
+        />
         Custom Connector SDK
       </div>
       <p className="text-[13px] text-zinc-500 leading-relaxed pr-4">

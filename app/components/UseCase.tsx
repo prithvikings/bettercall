@@ -1,6 +1,10 @@
 "use client";
 import React from "react";
 import { motion } from "framer-motion";
+import { HugeiconsIcon } from "@hugeicons/react";
+import { FlowConnectionIcon } from "@hugeicons/core-free-icons";
+import { AnalyticsUpIcon } from "@hugeicons/core-free-icons";
+import { Wallet01Icon } from "@hugeicons/core-free-icons";
 
 const useCasesData = [
   {
@@ -8,22 +12,11 @@ const useCasesData = [
     title: "DevOps",
     desc: "Visually orchestrate autonomous agents without writing boilerplate code",
     icon: (
-      <svg
-        width="20"
-        height="20"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      >
-        <rect x="3" y="3" width="6" height="6" rx="1"></rect>
-        <rect x="15" y="3" width="6" height="6" rx="1"></rect>
-        <rect x="9" y="15" width="6" height="6" rx="1"></rect>
-        <path d="M6 9v2c0 1.1.9 2 2 2h8a2 2 0 0 0 2-2V9"></path>
-        <path d="M12 13v2"></path>
-      </svg>
+      <HugeiconsIcon
+        icon={FlowConnectionIcon}
+        size={20}
+        className="text-blue-500"
+      />
     ),
   },
   {
@@ -31,20 +24,11 @@ const useCasesData = [
     title: "SalesOps",
     desc: "Visually orchestrate autonomous agents without writing boilerplate code",
     icon: (
-      <svg
-        width="20"
-        height="20"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      >
-        <line x1="18" y1="20" x2="18" y2="10"></line>
-        <line x1="12" y1="20" x2="12" y2="4"></line>
-        <line x1="6" y1="20" x2="6" y2="14"></line>
-      </svg>
+      <HugeiconsIcon
+        icon={AnalyticsUpIcon}
+        size={20}
+        className="text-blue-500"
+      />
     ),
   },
   {
@@ -114,19 +98,7 @@ const useCasesData = [
     title: "FinOps",
     desc: "Visually orchestrate autonomous agents without writing boilerplate code",
     icon: (
-      <svg
-        width="20"
-        height="20"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      >
-        <rect x="2" y="5" width="20" height="14" rx="2"></rect>
-        <line x1="2" y1="10" x2="22" y2="10"></line>
-      </svg>
+      <HugeiconsIcon icon={Wallet01Icon} size={20} className="text-blue-500" />
     ),
   },
 ];
