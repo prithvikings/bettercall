@@ -5,42 +5,48 @@ import { motion } from "framer-motion";
 export const AutomationsCard = () => {
   return (
     <div className="group relative bg-[#faf9f5] border border-zinc-200 px-4 py-4 pb-5 flex flex-col h-[400px] transition-colors duration-300 hover:border-zinc-300 hover:bg-zinc-50 overflow-hidden md:col-span-2">
+      {/* Cyber-Brutalist Corner Accents */}
       <div className="absolute -top-[1px] -left-[1px] w-3 h-3 border-t-[2px] border-l-[2px] border-blue-500 z-20 transition-all duration-300 group-hover:w-4 group-hover:h-4"></div>
       <div className="absolute -top-[1px] -right-[1px] w-3 h-3 border-t-[2px] border-r-[2px] border-blue-500 z-20 transition-all duration-300 group-hover:w-4 group-hover:h-4"></div>
       <div className="absolute -bottom-[1px] -left-[1px] w-3 h-3 border-b-[2px] border-l-[2px] border-blue-500 z-20 transition-all duration-300 group-hover:w-4 group-hover:h-4"></div>
       <div className="absolute -bottom-[1px] -right-[1px] w-3 h-3 border-b-[2px] border-r-[2px] border-blue-500 z-20 transition-all duration-300 group-hover:w-4 group-hover:h-4"></div>
 
+      {/* Animation Canvas */}
       <div className="flex-1 w-full bg-white border border-zinc-200 mb-5 flex items-center justify-center relative z-10 overflow-hidden shadow-inner rounded-sm">
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#f0f0f0_1px,transparent_1px),linear-gradient(to_bottom,#f0f0f0_1px,transparent_1px)] bg-[size:1rem_1rem] opacity-60"></div>
 
-        <div className="relative w-[320px] h-[160px] scale-90 sm:scale-100 flex-shrink-0">
+        {/* Widened Graphic Container: 460x160 */}
+        <div className="relative w-[460px] h-[160px] scale-[0.65] sm:scale-[0.85] lg:scale-100 flex-shrink-0">
           <svg
-            width="320"
+            width="460"
             height="160"
             className="absolute inset-0 z-10 pointer-events-none"
           >
+            {/* Background Tracks */}
             <path
-              d="M 100 80 L 120 80"
+              d="M 120 80 L 190 80"
               stroke="#e4e4e7"
               strokeWidth="2"
               fill="none"
             />
             <path
-              d="M 190 80 C 205 80, 205 40, 220 40"
+              d="M 270 80 C 305 80, 305 40, 340 40"
               stroke="#e4e4e7"
               strokeWidth="2"
               fill="none"
             />
             <path
-              d="M 190 80 C 205 80, 205 120, 220 120"
+              d="M 270 80 C 305 80, 305 120, 340 120"
               stroke="#e4e4e7"
               strokeWidth="2"
               fill="none"
             />
+
+            {/* Animated Active Tracks */}
             <motion.path
-              d="M 100 80 L 120 80"
+              d="M 120 80 L 190 80"
               stroke="#3b82f6"
-              strokeWidth="2"
+              strokeWidth="2.5"
               fill="none"
               strokeLinecap="round"
               animate={{
@@ -55,9 +61,9 @@ export const AutomationsCard = () => {
               }}
             />
             <motion.path
-              d="M 190 80 C 205 80, 205 40, 220 40"
+              d="M 270 80 C 305 80, 305 40, 340 40"
               stroke="#3b82f6"
-              strokeWidth="2"
+              strokeWidth="2.5"
               fill="none"
               strokeLinecap="round"
               animate={{
@@ -72,9 +78,9 @@ export const AutomationsCard = () => {
               }}
             />
             <motion.path
-              d="M 190 80 C 205 80, 205 120, 220 120"
+              d="M 270 80 C 305 80, 305 120, 340 120"
               stroke="#3b82f6"
-              strokeWidth="2"
+              strokeWidth="2.5"
               fill="none"
               strokeLinecap="round"
               animate={{
@@ -90,6 +96,7 @@ export const AutomationsCard = () => {
             />
           </svg>
 
+          {/* Node 1: Missed Call (Stays at left-0) */}
           <motion.div
             animate={{
               borderColor: [
@@ -118,7 +125,7 @@ export const AutomationsCard = () => {
               repeat: Infinity,
               times: [0, 0.1, 0.25, 0.4, 0.55, 0.7, 0.9, 1],
             }}
-            className="absolute left-0 top-[64px] w-[100px] h-[32px] bg-white border rounded-md flex items-center gap-1.5 px-2 z-20"
+            className="absolute left-0 top-[60px] w-[120px] h-[40px] bg-white border rounded-md flex items-center gap-2 px-2.5 z-20"
           >
             <motion.div
               animate={{
@@ -140,7 +147,7 @@ export const AutomationsCard = () => {
               }}
             >
               <svg
-                className="w-3 h-3"
+                className="w-4 h-4"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -150,14 +157,15 @@ export const AutomationsCard = () => {
                   strokeLinejoin="round"
                   strokeWidth="2"
                   d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
-                ></path>
+                />
               </svg>
             </motion.div>
-            <span className="text-[9px] font-semibold text-zinc-700">
+            <span className="text-[11px] font-semibold text-zinc-700">
               Missed Call
             </span>
           </motion.div>
 
+          {/* Node 2: Wait (Moved from 140px to 190px) */}
           <motion.div
             animate={{
               borderColor: [
@@ -186,7 +194,7 @@ export const AutomationsCard = () => {
               repeat: Infinity,
               times: [0, 0.1, 0.25, 0.4, 0.55, 0.7, 0.9, 1],
             }}
-            className="absolute left-[120px] top-[64px] w-[70px] h-[32px] bg-white border rounded-md flex items-center justify-center gap-1.5 px-2 z-20"
+            className="absolute left-[190px] top-[60px] w-[80px] h-[40px] bg-white border rounded-md flex items-center justify-center gap-1.5 px-2 z-20"
           >
             <motion.div
               animate={{
@@ -210,7 +218,7 @@ export const AutomationsCard = () => {
               }}
             >
               <svg
-                className="w-3 h-3"
+                className="w-4 h-4"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -220,12 +228,15 @@ export const AutomationsCard = () => {
                   strokeLinejoin="round"
                   strokeWidth="2"
                   d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
-                ></path>
+                />
               </svg>
             </motion.div>
-            <span className="text-[9px] font-semibold text-zinc-700">Wait</span>
+            <span className="text-[11px] font-semibold text-zinc-700">
+              Wait
+            </span>
           </motion.div>
 
+          {/* Node 3: Auto-reply (Moved from 240px to 340px) */}
           <motion.div
             animate={{
               borderColor: [
@@ -254,7 +265,7 @@ export const AutomationsCard = () => {
               repeat: Infinity,
               times: [0, 0.1, 0.25, 0.4, 0.55, 0.7, 0.9, 1],
             }}
-            className="absolute left-[220px] top-[24px] w-[100px] h-[32px] bg-white border rounded-md flex items-center gap-1.5 px-2 z-20"
+            className="absolute left-[340px] top-[20px] w-[120px] h-[40px] bg-white border rounded-md flex items-center gap-2 px-2.5 z-20"
           >
             <motion.div
               animate={{
@@ -277,7 +288,7 @@ export const AutomationsCard = () => {
               }}
             >
               <svg
-                className="w-3 h-3"
+                className="w-4 h-4"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -287,14 +298,15 @@ export const AutomationsCard = () => {
                   strokeLinejoin="round"
                   strokeWidth="2"
                   d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
-                ></path>
+                />
               </svg>
             </motion.div>
-            <span className="text-[9px] font-semibold text-zinc-700">
-              Auto-reply WA
+            <span className="text-[11px] font-semibold text-zinc-700">
+              Auto-reply
             </span>
           </motion.div>
 
+          {/* Node 4: Create Task (Moved from 240px to 340px) */}
           <motion.div
             animate={{
               borderColor: [
@@ -323,7 +335,7 @@ export const AutomationsCard = () => {
               repeat: Infinity,
               times: [0, 0.1, 0.25, 0.4, 0.55, 0.7, 0.9, 1],
             }}
-            className="absolute left-[220px] top-[104px] w-[100px] h-[32px] bg-white border rounded-md flex items-center gap-1.5 px-2 z-20"
+            className="absolute left-[340px] top-[100px] w-[120px] h-[40px] bg-white border rounded-md flex items-center gap-2 px-2.5 z-20"
           >
             <motion.div
               animate={{
@@ -346,7 +358,7 @@ export const AutomationsCard = () => {
               }}
             >
               <svg
-                className="w-3 h-3"
+                className="w-4 h-4"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -356,16 +368,17 @@ export const AutomationsCard = () => {
                   strokeLinejoin="round"
                   strokeWidth="2"
                   d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"
-                ></path>
+                />
               </svg>
             </motion.div>
-            <span className="text-[9px] font-semibold text-zinc-700">
+            <span className="text-[11px] font-semibold text-zinc-700">
               Create Task
             </span>
           </motion.div>
         </div>
       </div>
 
+      {/* Restored Original Footer */}
       <div className="max-w-md">
         <h3 className="font-inter font-medium text-zinc-900 text-[17px] leading-snug relative z-20">
           Follow-ups happen automatically.

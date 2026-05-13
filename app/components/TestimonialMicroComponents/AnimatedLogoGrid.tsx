@@ -29,13 +29,17 @@ export const AnimatedLogoGrid = ({ defaultLogos }: { defaultLogos: any[] }) => {
       {logos.map((logo, index) => (
         <div
           key={index}
-          className="group relative flex items-center justify-center h-[120px] px-6 border-b border-r border-zinc-200 grayscale opacity-80 hover:grayscale-0 hover:opacity-100 transition duration-300 cursor-pointer overflow-hidden"
+          // THE FIX: Removed 'overflow-hidden' from here so it doesn't clip the -1px corners.
+          // Added 'hover:z-10 bg-white' so it overlaps adjacent grid items on hover.
+          className="group relative flex items-center justify-center h-[120px] px-6 border-b border-r border-zinc-200 bg-white grayscale opacity-80 hover:grayscale-0 hover:opacity-100 hover:z-10 transition duration-300 cursor-pointer"
         >
           {/* Dynamic Expanding Hover Corners (Blue) */}
-          <div className="absolute -bottom-[1px] -left-[1px] w-2 h-2 border-b-[2px] border-l-[2px] border-blue-500 z-30 opacity-0 transition-all duration-300 group-hover:w-4 group-hover:h-4 group-hover:opacity-100"></div>
-          <div className="absolute -bottom-[1px] -right-[1px] w-2 h-2 border-b-[2px] border-r-[2px] border-blue-500 z-30 opacity-0 transition-all duration-300 group-hover:w-4 group-hover:h-4 group-hover:opacity-100"></div>
+          {/* Added pointer-events-none to prevent hover flickering */}
+          <div className="absolute -bottom-[1px] -left-[1px] w-2 h-2 border-b-[2px] border-l-[2px] border-blue-500 z-30 opacity-0 transition-all duration-300 group-hover:w-4 group-hover:h-4 group-hover:opacity-100 pointer-events-none"></div>
+          <div className="absolute -bottom-[1px] -right-[1px] w-2 h-2 border-b-[2px] border-r-[2px] border-blue-500 z-30 opacity-0 transition-all duration-300 group-hover:w-4 group-hover:h-4 group-hover:opacity-100 pointer-events-none"></div>
 
           {/* Animation Wrapper */}
+          {/* We keep overflow-hidden strictly on this inner wrapper so the blurring logos don't bleed out of the box during transition */}
           <div className="absolute inset-0 overflow-hidden pointer-events-none z-10 flex items-center justify-center">
             <AnimatePresence>
               <motion.div
